@@ -61,12 +61,12 @@ func main() {
 		fmt.Printf("There was something wrong %v\n", err.Error())
 	}
 	pokemons := ReadConcurrently(f)
-	WorkerPools(1, 1, "even", *pokemons)
-	WorkerPools(3, 2, "even", *pokemons)
-	WorkerPools(5, 1, "even", *pokemons)
-	WorkerPools(5, 2, "even", *pokemons)
-	WorkerPools(6, 1, "even", *pokemons)
-	WorkerPools(10, 3, "even", *pokemons)
+	WorkerPools(1, 1, "odd", *pokemons)
+	WorkerPools(3, 2, "odd", *pokemons)
+	WorkerPools(5, 1, "odd", *pokemons)
+	WorkerPools(5, 2, "odd", *pokemons)
+	WorkerPools(6, 1, "odd", *pokemons)
+	WorkerPools(10, 3, "odd", *pokemons)
 }
 
 func calculatePoolSize(items int, itemsPerWorker int, totalPokemons int) int {
