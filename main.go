@@ -66,7 +66,7 @@ func main() {
 	WorkerPools(5, 1, "odd", *pokemons)
 	WorkerPools(5, 2, "odd", *pokemons)
 	WorkerPools(6, 1, "odd", *pokemons)
-	WorkerPools(10, 3, "odd", *pokemons)
+	WorkerPools(10, 3, "even", *pokemons)
 }
 
 func calculatePoolSize(items int, itemsPerWorker int, totalPokemons int) int {
@@ -150,9 +150,16 @@ func WorkerPools(items int, itemsPerWorker int, typeNumber string, pokemons []Po
 	var nums []Pokemon = nil
 	bucket := make(map[int]int, totalPokemons+1)
 	for elem := range values {
-		if elem%2 != 0 && bucket[elem] == 0 {
-			nums = append(nums, pokemons[elem-1])
-			bucket[elem] = elem
+		if typeNumber == "odd" {
+			if elem%2 != 0 && bucket[elem] == 0 {
+				nums = append(nums, pokemons[elem-1])
+				bucket[elem] = elem
+			}
+		} else if typeNumber == "even" {
+			if elem%2 == 0 && bucket[elem] == 0 {
+				nums = append(nums, pokemons[elem-1])
+				bucket[elem] = elem
+			}
 		}
 		if len(nums) >= items || len(nums) >= maxPokemons {
 			break
